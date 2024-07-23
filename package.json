@@ -4,7 +4,18 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "node.extend": "~1.0.10"
+    "canvas-toBlob": "^1.0.0",
+    "file-saver": "^2.0.5",
+    "fpsmeter": "^0.3.1",
+    "gl-matrix": "^2.2.1",
+    "jquery": "~2.1.1",
+    "jquery-ui": "^1.13.3",
+    "jszip": "^2.7.0",
+    "jsziptools": "^3.0.0-rc4",
+    "maphilight": "^1.4.2",
+    "node.extend": "~1.0.10",
+    "qtip2": "^3.0.3",
+    "rusha": "^0.7.7"
   },
   "devDependencies": {
     "grunt": "~0.4.5",

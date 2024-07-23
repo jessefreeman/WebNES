@@ -171,16 +171,6 @@ module.exports = function (grunt) {
     usemin: {
       html: outputHtml,
     },
-    connect: {
-      server: {
-        options: {
-          port: 8000,
-          base: [".", "out"], // This lets the server understand to check both the project root and the 'out' directory for files.
-          livereload: true,
-          open: true,
-        },
-      },
-    },
     "http-server": {
       dev: {
         root: "out",
@@ -195,7 +185,11 @@ module.exports = function (grunt) {
     },
     watch: {
       scripts: {
-        files: ["project/**/*.*"], // Watches all files in the 'project' directory and its subdirectories
+        files: [
+          "project/**/*.*", // Watches all files in the 'project' directory and its subdirectories
+          "!project/js/db/**", // Excludes all files in the 'project/js/db' directory
+          "!project/**/*polyfills*.js", // Excludes files that include 'polyfills' in their names throughout the project directory
+        ],
         tasks: ["default"], // Runs the 'default' task when a file changes
         options: {
           spawn: false,
@@ -275,7 +269,6 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks("grunt-contrib-uglify");
   grunt.loadNpmTasks("grunt-contrib-rename");
   grunt.loadNpmTasks("grunt-usemin");
-  grunt.loadNpmTasks("grunt-contrib-connect"); // Load the connect task
   grunt.loadNpmTasks("grunt-contrib-watch");
   grunt.loadNpmTasks("grunt-http-server");
 
@@ -289,9 +282,6 @@ module.exports = function (grunt) {
     "rename",
     "usemin",
   ]);
-
-  // Optionally create a watch-specific task
-  // grunt.registerTask('watchChanges', ['watch']);
 
   // Optionally create a serve task that specifically runs the server and watch
   grunt.registerTask("serve", ["http-server:dev", "watch"]);
